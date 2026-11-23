@@ -5,7 +5,7 @@ Sends Moodle notifications (graded work, forum posts, due dates, anything Moodle
 ## Set it up
 
 1. Site administration > Messaging > Notification settings: turn on **ntfy**, then choose which notifications it may send.
-2. Site administration > Plugins > Message outputs > ntfy: keep `https://ntfy.sh` or enter your own server. A server that requires sign-in to publish needs an access token (starts with `tk_`).
+2. Site administration > Messaging > ntfy (this page appears once ntfy is on): keep `https://ntfy.sh` or enter your own server. A server that requires sign-in to publish needs an access token (starts with `tk_`).
 3. Each user installs the ntfy app (Android, iOS) or opens the ntfy web app, subscribes to a topic, and enters the same topic under Preferences > Notification preferences > ntfy.
 
 ## Good to know

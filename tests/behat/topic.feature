@@ -1,10 +1,20 @@
-@message @message_ntfy @javascript
+@message @message_ntfy
 Feature: Users choose the ntfy topic their notifications go to
   In order to get Moodle notifications on my phone
   As a user
   I need to enter my ntfy topic in my notification preferences
 
-  Background:
+  Scenario: An administrator points the plugin at their own server
+    Given I log in as "admin"
+    When I visit "/admin/settings.php?section=messagesettingntfy"
+    And I set the following fields to these values:
+      | ntfy server  | https://ntfy.school.example |
+      | Access token | tk_example                  |
+    And I press "Save changes"
+    Then the field "ntfy server" matches value "https://ntfy.school.example"
+
+  @javascript
+  Scenario: A user saves a topic and sees it again
     Given the following "users" exist:
       | username | firstname | lastname | email                |
       | student1 | Student   | 1        | student1@example.com |
@@ -17,9 +27,7 @@ Feature: Users choose the ntfy topic their notifications go to
       | mod_assign_assign_notification_locked[ntfy]  | 0 |
     And I press "Save changes"
     And I log out
-
-  Scenario: A user saves a topic and sees it again
-    Given I log in as "student1"
+    And I log in as "student1"
     And I follow "Preferences" in the user menu
     And I click on "Notification preferences" "link" in the "#page-content" "css_element"
     When I click on "[data-processor-name='ntfy'] [data-processor-setting]" "css_element"
